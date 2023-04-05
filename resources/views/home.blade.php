@@ -9,7 +9,13 @@
             @foreach ($ringtonedata as $value)
                 <div class="ringtone ">
                     <div class="details">
-                        <div class="controls">
+
+
+                        <img src="https://picsum.photos/seed/picsum/200/300" class="play" width="50" height="50">
+                        <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$value->image}}" class="pause" width="50" height="50">
+
+
+                        {{-- <div class="controls">
                             <div class="control bg-gradient-3" data-id="01f5dzvi" data-f="Eed253231d4611226da6062dcc735cbb6">
                                 <div class="play play-icon">
                                     <svg class="icon">
@@ -25,9 +31,11 @@
                                     <div class="spinner"></div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
                         <a href="ringtone/oii-message-tone-01f5dzvi.html" class="title">{{$value->name}}</a>
                         <div class="like-share-icon">
+
                             <div class="like-icon " data-eid="01f5dzvi">
                                 <svg class="icon">
                                     <use xlink:href="#favorite"></use>
@@ -55,12 +63,14 @@
                     @php
                         $labelsarray = explode(',', $value->labels);
                     @endphp
+                    <div class="tags">
                     @if(isset($labelsarray))
                         @foreach ($labelsarray as $l)
                             <a class="ringtone-tag" href="browse/ringtones/mp3/0/downloads/iphone-message-tone.html"
                             rel="tag">{{$l}}</a>
                         @endforeach
                     @endif
+                    </div>
                     {{-- <div class="tags">
                         <a class="ringtone-tag" href="browse/ringtones/mp3/0/downloads/iphone-message-tone.html"
                             rel="tag">iphone message tone</a>
@@ -622,4 +632,27 @@
         @endif
 
     </section>
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $(document).ready( function() {
+
+        $('.play').click(function(){
+            $('.pause').show();
+            $(this).hide();
+            var audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+            audio.play();
+        });
+
+        $('.pause').click(function(){
+            $('.pause').hide();
+            $('.play').show();
+            var audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+            audio.pause();
+        });
+
+
+    });
+</script>
 @endsection

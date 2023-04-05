@@ -93,6 +93,10 @@
                         @if(isset($edit))
                             <form class="form"  action="{{url('admin/ringtone')}}/{{$edit->r_id}}" enctype="multipart/form-data" method="POST">
                             @method('PUT')
+
+                        @else
+                            <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post">
+
                         @else   
                             <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post" id="ringtone">
                         @endif
@@ -129,7 +133,7 @@
                                         <label>Image :</label>
                                         @if(isset($edit))
                                             <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="h-25 w-25 align-self-end">
-                                        @endif  
+                                        @endif
                                         <input type="file" class="form-control" name="image" placeholder="Enter Author Name" accept="image/png, image/gif, image/jpeg"/>
                                     </div>
                                 </div> -->
@@ -170,6 +174,8 @@
     <!--end::Entry-->
 </div>
 @endsection
+
+=======
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 <script>
