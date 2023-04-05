@@ -40,7 +40,7 @@
                         <h3 class="card-label">Ringtone
                     </div>
                     <div class="card-toolbar">
-                        
+
                         <!--begin::Button-->
                         <a href="{{url('admin/ringtone/create')}}" class="btn btn-primary font-weight-bolder">
                         <span class="svg-icon svg-icon-md">
@@ -60,12 +60,12 @@
                 <div class="card-body">
                     @if ($message = Session::get('success'))
                         <div class="alert alert-success alert-block">
-                            <button type="button" class="close" data-dismiss="alert">×</button>	
+                            <button type="button" class="close" data-dismiss="alert">×</button>
                                 <strong>{{ $message }}</strong>
                         </div>
                     @endif
                     <!--begin: Datatable-->
-                    
+
                     <!--end: Datatable-->
                 </div>
             </div>
