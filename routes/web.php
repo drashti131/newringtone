@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RingtoneController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,8 +26,7 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/dashboard',[DashboardController::class,'dashboard']);
-    Route::get('/admin/ringtone',[RingtoneController::class,'ringtone']);
-    Route::get('/admin/addringtone',[RingtoneController::class,'addringtone']);
+    Route::resource('/admin/ringtone', RingtoneController::class);
 });
 
 Route::get('logout', function ()
