@@ -42,7 +42,7 @@
                     <div class="card-toolbar">
                         
                         <!--begin::Button-->
-                        <a href="{{url('admin/ringtone/view')}}" class="btn btn-primary font-weight-bolder">
+                        <a href="{{url('admin/ringtone/create')}}" class="btn btn-primary font-weight-bolder">
                         <span class="svg-icon svg-icon-md">
                             <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -54,7 +54,7 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>Add Ringtone</a>
-                        <!--end::Button-->
+                        <a href="#" class="btn btn-icon delete_level" r_id="1" data-toggle="modal" data-target="#delete-ringtone" title="Delet Ringtone"><i class="fa fa-trash text-danger"></i></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -77,4 +77,50 @@
 </div>
 <!--end::Content-->
 </html>
+<div class="modal fade" id="delete-ringtone" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title activatetitle">Delete Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="activatetext">Are you sure you want to delete Ringtone ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary confrimdelete" >Yes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+<script>
+    //Delete Level
+    $('body').on('click','.delete_level',function(){
+        var r_id=$(this).attr('r_id');
+        $('.confrimdelete').attr('data',r_id);
+    });
+
+    $('body').on('click','.confrimdelete',function(){
+        var r_id=$(this).attr('data');
+
+        $.ajax({
+            method: 'delete',
+            url : "{{ url('admin/ringtone') }}"+"/"+ r_id,
+            data: { _token : "{{csrf_token()}}"},
+            success: function (result) {
+               if(result=="success")
+               {
+                    $('#delete-ringtone').modal('hide');
+                    $('.data-table').DataTable().row(r_id).ajax.reload();
+               }
+            }
+        })
+
+    });
+</script>
 @endsection
