@@ -9,7 +9,4 @@ class DashboardController extends Controller
     public function dashboard(){
         return view('Admin.dashboard');
     }
-    public function ringtone(){
-        return view('Admin.ringtone');
-    }
 }
