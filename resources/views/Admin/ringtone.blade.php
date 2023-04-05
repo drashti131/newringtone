@@ -1,5 +1,8 @@
 @extends('Admin.master')
 @section('body')
+ <!-- Datatable CSS -->
+ <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+
 <!--begin::Content-->
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
@@ -54,7 +57,7 @@
                             </svg>
                             <!--end::Svg Icon-->
                         </span>Add Ringtone</a>
-                        <a href="#" class="btn btn-icon delete_level" r_id="1" data-toggle="modal" data-target="#delete-ringtone" title="Delet Ringtone"><i class="fa fa-trash text-danger"></i></a>
+
                     </div>
                 </div>
                 <div class="card-body">
@@ -65,6 +68,21 @@
                         </div>
                     @endif
                     <!--begin: Datatable-->
+
+                        <table class="table table-bordered dataTable" id="ringtonedata">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Author Name</th>
+                                    <th>Total Download</th>
+                                    <th>Labels</th>
+                                    <th >Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
 
                     <!--end: Datatable-->
                 </div>
@@ -98,9 +116,36 @@
     </div>
 @endsection
 @section('script')
+
+
+<!-- Datatable JS -->
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('#ringtonedata').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'ajax': {
+                'url': "{{url('admin/ringtone')}}"
+            },
+            'columns': [
+                {data: 'r_id'},
+                {data: 'name'},
+                {data: 'authorname'},
+                {data: 'download_count'},
+                {data: 'labels'},
+                {data: 'action',
+                orderable: false, searchable: false},
+            ]
+        });
+    });
+</script>
+
+
 <script>
     //Delete Level
-    $('body').on('click','.delete_level',function(){
+    $('body').on('click','.delete_ringtone',function(){
         var r_id=$(this).attr('r_id');
         $('.confrimdelete').attr('data',r_id);
     });
@@ -113,11 +158,11 @@
             url : "{{ url('admin/ringtone') }}"+"/"+ r_id,
             data: { _token : "{{csrf_token()}}"},
             success: function (result) {
-               if(result=="success")
-               {
+                if(result=="success")
+                {
+                    $('#ringtonedata').DataTable().row(r_id).ajax.reload();
                     $('#delete-ringtone').modal('hide');
-                    $('.data-table').DataTable().row(r_id).ajax.reload();
-               }
+                }
             }
         })
 

@@ -46,7 +46,7 @@
                         @if(isset($edit))
                             <form class="form"  action="{{url('admin/ringtone')}}/{{$edit->r_id}}" enctype="multipart/form-data" method="POST">
                             @method('PUT')
-                        @else   
+                        @else
                             <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post">
                         @endif
                             @csrf
@@ -82,7 +82,7 @@
                                         <label>Image :</label>
                                         @if(isset($edit))
                                             <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="h-25 w-25 align-self-end">
-                                        @endif  
+                                        @endif
                                         <input type="file" class="form-control" name="image" placeholder="Enter Author Name" accept="image/png, image/gif, image/jpeg"/>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <button type="submit" class="btn btn-primary mr-2">Save</button>
-                                        <a href="{{url('ringtone')}}" class="btn btn-secondary">Cancel</a>
+                                        <a href="{{url('admin/ringtone')}}" class="btn btn-secondary">Cancel</a>
                                     </div>
                                 </div>
                             </div>
