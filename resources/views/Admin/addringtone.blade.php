@@ -91,12 +91,8 @@
                         </div>
                         <!--begin::Form-->
                         @if(isset($edit))
-                            <form class="form"  action="{{url('admin/ringtone')}}/{{$edit->r_id}}" enctype="multipart/form-data" method="POST">
+                            <form class="form"  action="{{url('admin/ringtone')}}/{{$edit->r_id}}" enctype="multipart/form-data" method="POST" id="ringtone">
                             @method('PUT')
-
-                        @else
-                            <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post">
-
                         @else   
                             <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post" id="ringtone">
                         @endif
