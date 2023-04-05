@@ -44,7 +44,7 @@
                     </div>
                     <div class="info">
                         <div class="duration">{{$value->time}}</div>
-                        <div class="username">@{{$value->authorname}}</div>
+                        <div class="username">@ {{$value->authorname}}</div>
                         <div class="downloads">
                             <svg class="icon">
                                 <use xlink:href="#arrow_down"></use>
