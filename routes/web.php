@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\RingtoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,8 @@ Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->nam
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/admin/dashboard',[DashboardController::class,'dashboard']);
-    Route::get('/admin/ringtone',[DashboardController::class,'ringtone']);
+    Route::get('/admin/ringtone',[RingtoneController::class,'ringtone']);
+    Route::get('/admin/addringtone',[RingtoneController::class,'addringtone']);
 });
 
 Route::get('logout', function ()
