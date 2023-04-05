@@ -1,5 +1,52 @@
 @extends('Admin.master')
 @section('body')
+<style>
+    .error{
+        color : red !important;
+    }
+    .image-preview-container {
+    width: 30%;
+    /* margin: 0 auto; */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.preview{
+    display: flex;
+    justify-content: center;
+}
+
+.image-preview-container img {
+    width:50%;
+    margin-bottom: 30px;
+    display: none;
+}
+.dflex{
+    display: block !important;
+}
+.image-preview-container input {
+    display: none;
+}
+
+.image-preview-container label {
+    display: block;
+    width: 45%;
+    height: 45px;
+    margin-left: 25%;
+    text-align: center;
+    background: #8338ec;
+    color: #fff;
+    font-size: 15px;
+    text-transform: Uppercase;
+    font-weight: 400;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Subheader-->
     <div class="subheader py-2 py-lg-6 subheader-solid" id="kt_subheader">
@@ -46,19 +93,23 @@
                         @if(isset($edit))
                             <form class="form"  action="{{url('admin/ringtone')}}/{{$edit->r_id}}" enctype="multipart/form-data" method="POST">
                             @method('PUT')
+
                         @else
                             <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post">
+
+                        @else   
+                            <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post" id="ringtone">
                         @endif
                             @csrf
                             <div class="card-body">
                                 <div class="form-group row">
                                     <div class="col-lg-6">
                                         <label>Ringtone Name :</label>
-                                        <input type="text" class="form-control" name="name" placeholder="Enter Ringtone Name" value="{{isset($edit)?$edit->name:''}}"/>
+                                        <input type="text" id="name" class="form-control" name="name" placeholder="Enter Ringtone Name" value="{{isset($edit)?$edit->name:''}}"/>
                                     </div>
                                     <div class="col-lg-6">
                                         <label>Ringtone URL :</label>
-                                        <input type="text" class="form-control" name="url" placeholder="Enter Ringtone URL" value="{{isset($edit)?$edit->url:''}}"/>
+                                        <input type="text" id="url" class="form-control" name="url" placeholder="Enter Ringtone URL" value="{{isset($edit)?$edit->url:''}}"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -77,13 +128,29 @@
                                         <textarea class="form-control" name="labels" placeholder="Enter Labels">{{isset($edit)?$edit->labels :''}}</textarea>
                                     </div>
                                 </div>
-                                <div class="form-group row">
+                                <!-- <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label>Image :</label>
                                         @if(isset($edit))
                                             <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="h-25 w-25 align-self-end">
                                         @endif
                                         <input type="file" class="form-control" name="image" placeholder="Enter Author Name" accept="image/png, image/gif, image/jpeg"/>
+                                    </div>
+                                </div> -->
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label>Image :</label>
+                                    </div>
+                                    <div class="image-preview-container">
+                                        <div class="preview">
+                                        @if(isset($edit->image))
+                                            <img id="preview-selected-image" src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="dflex"/>
+                                        @else 
+                                        <img id="preview-selected-image" src=""/>   
+                                        @endif    
+                                        </div>
+                                        <label for="file-upload">Upload Image</label>
+                                        <input type="file" id="file-upload" accept="image/*" onchange="previewImage(event);" name="image"/>
                                     </div>
                                 </div>
                             </div>
@@ -106,4 +173,49 @@
     </div>
     <!--end::Entry-->
 </div>
+@endsection
+
+=======
+@section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+<script>
+    $('#name').on('keyup', function (e) { 
+    e.preventDefault();
+    var str = $(this).val();
+    str = str.replace(/\W+(?!$)/g, '-').toLowerCase();
+    str = str.replace(/\W$/, '').toLowerCase();
+    $('#url').val(str);
+    });
+  
+    $(document).ready(function() {
+        $("#ringtone").validate({
+            rules: {
+                name: "required",
+                time: "required",
+                authorname: "required",
+                labels: "required",
+                image: "required",
+                
+            },
+            messages: {
+                name: "Name is required",
+                time: "Time is required",
+                authorname: "Author Name is required",
+                image: "Image is required",
+            }
+        });
+    });
+</script>
+<script>
+    const previewImage = (event) => {
+    const imageFiles = event.target.files;
+    const imageFilesLength = imageFiles.length;
+    if (imageFilesLength > 0) {
+        const imageSrc = URL.createObjectURL(imageFiles[0]);
+        const imagePreviewElement = document.querySelector("#preview-selected-image");
+        imagePreviewElement.src = imageSrc;
+        imagePreviewElement.style.display = "block";
+    }
+};
+</script>
 @endsection
