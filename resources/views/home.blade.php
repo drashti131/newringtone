@@ -45,7 +45,27 @@
     background-position-x:11px !important;
     cursor: pointer;
 }
-
+=======
+    .downloadbtn{
+        margin-left: auto;
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 30px;
+        padding: 6px 12px;
+        color: #fff;
+        font-weight: 700;
+        font-size: 12px;
+        line-height: 16px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .downloadbtn svg{
+        width: 14px;
+        height: 14px;
+        margin-right: 8px;
+    }
 </style>
     <section class="content">
         <h1>Trending Ringtones
@@ -53,7 +73,7 @@
 
         @if(isset($ringtonedata) && count($ringtonedata)>0)
         <div class="ringtone-list">
-            @foreach ($ringtonedata as $value)
+            @foreach ($ringtonedata as $key=>$value)
                 <div class="ringtone ">
                     <div class="details">
                         
@@ -69,9 +89,11 @@
                             <!-- <div id="{{$value->r_id}}" class="play newcls" src="https://cldup.com/qR72ozoaiQ.mp3">Play</div> -->
                         </div>
 
-
                         <!-- <div class="controls">
                             <div class="control bg-gradient-3">
+                        <div class="controls">
+                            <div class="control bg-gradient-3" data-id="01f5dzvi" data-f="Eed253231d4611226da6062dcc735cbb6">
+
                                 <div class="play play-icon">
                                     <svg class="icon">
                                         <use xlink:href="#play-icon"></use>
@@ -86,8 +108,12 @@
                                     <div class="spinner"></div>
                                 </div>
                             </div>
+
                         </div>  -->
                         
+
+                        </div>
+
 
                         <a href="ringtone/oii-message-tone-01f5dzvi.html" class="title">{{$value->name}}</a>
                         <div class="like-share-icon">
@@ -127,18 +153,12 @@
                         @endforeach
                     @endif
                     </div>
-                    {{-- <div class="tags">
-                        <a class="ringtone-tag" href="browse/ringtones/mp3/0/downloads/iphone-message-tone.html"
-                            rel="tag">iphone message tone</a>
-                        <a class="ringtone-tag" href="browse/ringtones/mp3/0/downloads/apple.html" rel="tag">apple</a>
-                        <a class="ringtone-tag" href="browse/ringtones/mp3/0/downloads/iphone.html" rel="tag">iphone</a>
-                    </div> --}}
-                    <div class="download-button bg-download-button-3">
-                        <svg class="icon">
-                            <use xlink:href="#download-icon"></use>
-                        </svg>
-                        Download
-                    </div>
+                    <a class="btn btn-success downloadbtn bg-download-button-{{mt_rand(0,9)}}" href="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}" download>
+                            <svg class="icon">
+                                <use xlink:href="#download-icon"></use>
+                            </svg>
+                            Download
+                    </a>
                 </div>
             @endforeach
 
@@ -690,6 +710,7 @@
     </section>
 @endsection
 
+
 @section('script')
 <script type="text/javascript">
     $(document).ready( function() {
@@ -722,3 +743,5 @@
     });
 </script>
 @endsection
+
+
