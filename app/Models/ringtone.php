@@ -19,5 +19,6 @@ class ringtone extends Model
         'download_count',
         'labels',
         'audio_file',
+        'iphone_audio_file',
     ];
 }

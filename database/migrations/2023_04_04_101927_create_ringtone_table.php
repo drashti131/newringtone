@@ -22,6 +22,7 @@ class CreateRingtoneTable extends Migration
             $table->string('download_count');
             $table->text('labels');
             $table->text('audio_file')->nullable();
+            $table->text('iphone_audio_file')->nullable();
             $table->timestamps();
         });
     }

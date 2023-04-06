@@ -129,11 +129,21 @@
                                         <label class="col-lg-12">Audio File :</label>
                                         @if(isset($edit))
                                             <audio controls class="mb-2">
-                                                <source src="{{asset('public/Assets')}}/Admin/Ringtones/{{$edit->audio_file}}" type="audio/mpeg">
+                                                <source src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$edit->audio_file}}" type="audio/mpeg">
                                             </audio>
-                                            {{-- <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="h-25 w-25 align-self-end"> --}}
                                         @endif
                                         <input type="file" class="form-control" name="audio_file" accept="audio/mp3"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="col-lg-12">IOS Audio File :</label>
+                                        @if(isset($edit))
+                                            <audio controls class="mb-2">
+                                                <source src="{{asset('public/Assets')}}/Admin/Ringtones/IOS/{{$edit->iphone_audio_file}}" type="audio/mpeg">
+                                            </audio>
+                                        @endif
+                                        <input type="file" class="form-control" name="iphone_audio_file"/>
                                     </div>
                                 </div>
                                 {{-- <div class="form-group row">
