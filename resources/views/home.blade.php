@@ -46,28 +46,31 @@
     cursor: pointer;
 }
 
-    .downloadbtn{
-        margin-left: auto;
-        width: fit-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 30px;
-        padding: 6px 12px;
-        color: #fff;
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 16px;
-        cursor: pointer;
-        text-decoration: none;
-        margin-top:25px
-    }
-    .downloadbtn svg{
-        width: 14px;
-        height: 14px;
-        margin-right: 8px;
-       
-    }
+
+.downloadbtn{
+    margin-left: auto;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    padding: 6px 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top:25px
+}
+.downloadbtn svg{
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+
+}
+
+
 </style>
     <section class="content">
         <h1>Trending Ringtones
@@ -78,14 +81,13 @@
             @foreach ($ringtonedata as $key=>$value)
                 <div class="ringtone ">
                     <div class="details">
-                        
+
 
                         <div id="player-container">
                         <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
                             <div class="circle play newcls" id="{{$value->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}"></div>
-        
                         </div>
-                            <!-- <div class="newcls"> 
+                            <!-- <div class="newcls">
 
                             </div> -->
                             <!-- <div id="{{$value->r_id}}" class="play newcls" src="https://cldup.com/qR72ozoaiQ.mp3">Play</div> -->
@@ -716,7 +718,7 @@
         var track      = document.createElement('audio');
         track.id       = 'audio-player';
         track.controls = 'controls';
-       
+
         track.type     = 'audio/mpeg';
         $('.newcls').click(function(){
             track.src      = $(this).attr('src');
@@ -726,7 +728,7 @@
                 //controlBtn.textContent = "Pause";
                 $(this).removeClass('play')
                 $(this).addClass('pause')
-            } else { 
+            } else {
                 track.pause();
                 //controlBtn.textContent = "Play";
                 $(this).addClass('play')
@@ -737,7 +739,7 @@
                 $('#'+id).removeClass('pause')
                 $('#'+id).addClass('play')
             });
-        }); 
+        });
     });
 </script>
 @endsection

@@ -21,6 +21,7 @@ use App\Http\Controllers\RingtoneController;
 
 Route::get('/',[UserController::class,'index']);
 Route::get('{url?}',[UserController::class,'ringtonedetail']);
+
 Auth::routes();
 
 Route::get('/admin', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
