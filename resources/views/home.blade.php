@@ -45,7 +45,7 @@
     background-position-x:11px !important;
     cursor: pointer;
 }
-=======
+
     .downloadbtn{
         margin-left: auto;
         width: fit-content;
@@ -110,10 +110,6 @@
                             </div>
 
                         </div>  -->
-                        
-
-                        </div>
-
 
                         <a href="ringtone/oii-message-tone-01f5dzvi.html" class="title">{{$value->name}}</a>
                         <div class="like-share-icon">
