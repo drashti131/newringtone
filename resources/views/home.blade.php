@@ -1,77 +1,5 @@
 @extends('app')
 @section('body')
-<style>
-    /* #player-container .newcls {
-    cursor: pointer;
-    text-indent: -999999px;
-    height:45px;
-    width: 45px;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+),linear-gradient(49.02deg,#fc5c7d -14.03%,#6a82fb 104.22%);
-    background-repeat: no-repeat!important;
-    background-position: center;
-    background-repeat:no-repeat;
-    background-position:center;
-    border-radius: 4px;
-} */
-.play {
-  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
-}
-.pause {
-   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTAgMjRoLTZ2LTI0aDZ2MjR6bTEwLTI0aC02djI0aDZ2LTI0eiIvPjwvc3ZnPg==)!important;
-   background-position-x:10px !important;
-}
-.rectangle {
-    border-radius: 2px;
-    display: inline-block;
-    margin-right: 2px;
-    width: 50px;
-    height: 50px;
-    position: relative;
-    /* background:linear-gradient(49.02deg,#fc5c7d -14.03%,#6a82fb 104.22%) */
-}
-
-.rectangle .circle {
-    background: #fff;
-    border-radius: 100%;
-    height: 35px;
-    width: 35px;
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
-    background-repeat: no-repeat!important;
-    background-position: center !important;
-    background-size:16px;
-    background-position-x:11px !important;
-    cursor: pointer;
-}
-
-
-.downloadbtn{
-    margin-left: auto;
-    width: fit-content;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    padding: 6px 12px;
-    color: #fff;
-    font-weight: 700;
-    font-size: 12px;
-    line-height: 16px;
-    cursor: pointer;
-    text-decoration: none;
-    margin-top:25px
-}
-.downloadbtn svg{
-    width: 14px;
-    height: 14px;
-    margin-right: 8px;
-
-}
-
-
-</style>
     <section class="content">
         <h1>Trending Ringtones
         </h1>
@@ -148,7 +76,7 @@
                     <div class="tags">
                     @if(isset($labelsarray))
                         @foreach ($labelsarray as $l)
-                            <a class="ringtone-tag" href="browse/ringtones/mp3/0/downloads/iphone-message-tone.html"
+                            <a class="ringtone-tag" href="{{url('labels')}}/{{str_replace(' ', '-', $l)}}"
                             rel="tag">{{$l}}</a>
                         @endforeach
                     @endif
