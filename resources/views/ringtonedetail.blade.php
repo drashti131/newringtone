@@ -50,9 +50,9 @@
                     <span class="downloadcount">{{ $ringtonedata->download_count }}</span>
                 </div>
             </div>
-    
 
-           
+
+
             <div id="player-container">
                 <div class="rectangle_d bg-gradient-{{mt_rand(0,9)}}">
                     <div class="circle_d play newcls" id="{{$ringtonedata->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$ringtonedata->audio_file}}"></div>
@@ -100,7 +100,7 @@
                         <!-- <div class="newcls">
 
                         </div> -->
-                        
+
                     </div>
 
                     <!-- <div class="controls">
@@ -171,9 +171,9 @@
                 </a>
             </div>
         @endforeach
-    </div> 
+    </div>
 </div>
-@endif 
+@endif
 
 
 @endsection
