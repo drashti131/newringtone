@@ -25,7 +25,7 @@ Route::get('/',[UserController::class,'index']);
 
 Route::get('/downloadringtone/{id}',[UserController::class,'downloadringtone']);
 Route::get('labels/{url?}',[UserController::class,'labelwisedetail']);
-Route::any('/{url?}',[UserController::class,'ringtonedetail']);
+
 
 
 Auth::routes();
@@ -44,3 +44,5 @@ Route::get('logout', function ()
 
     return Redirect::to('/admin');
 })->name('logout');
+
+Route::any('/{url?}',[UserController::class,'ringtonedetail']);
