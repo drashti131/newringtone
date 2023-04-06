@@ -110,10 +110,18 @@ class RingtoneController extends Controller
             if($request->file('audio_file'))
             {
 
-                $path=public_path('Assets/Admin/Ringtones');
+                $path=public_path('Assets/Admin/Ringtones/Android/');
                 $filename = $request->audio_file->getClientOriginalName();
                 $request->audio_file->move($path, $filename);
                 $ringtone['audio_file']=$filename;
+            }
+            if($request->file('iphone_audio_file'))
+            {
+
+                $path=public_path('Assets/Admin/Ringtones/IOS/');
+                $filename = $request->iphone_audio_file->getClientOriginalName();
+                $request->iphone_audio_file->move($path, $filename);
+                $ringtone['iphone_audio_file']=$filename;
             }
             ringtone::create($ringtone);
             return redirect('/admin/ringtone');
@@ -165,7 +173,7 @@ class RingtoneController extends Controller
 
             if($request->file('audio_file'))
             {
-                $path=public_path('Assets/Admin/Ringtones');
+                $path=public_path('Assets/Admin/Ringtones/Android/');
                 $filename = $request->audio_file->getClientOriginalName();
                 $old_ringtone = ringtone::find($id);
                 if($old_ringtone->audio_file != ''  && $old_ringtone->audio_file != null){
@@ -174,6 +182,18 @@ class RingtoneController extends Controller
                 }
                 $request->audio_file->move($path, $filename);
                 $ringtone['audio_file']=$filename;
+            }
+            if($request->file('iphone_audio_file'))
+            {
+                $path=public_path('Assets/Admin/Ringtones/IOS/');
+                $filename = $request->iphone_audio_file->getClientOriginalName();
+                $old_ringtone = ringtone::find($id);
+                if($old_ringtone->iphone_audio_file != ''  && $old_ringtone->iphone_audio_file != null){
+                    $file_old = $path.'/'.$old_ringtone->iphone_audio_file;
+                    unlink($file_old);
+                }
+                $request->iphone_audio_file->move($path, $filename);
+                $ringtone['iphone_audio_file']=$filename;
             }
             ringtone::where('r_id',$id)->update($ringtone);
             return redirect('/admin/ringtone');

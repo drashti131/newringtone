@@ -20,7 +20,8 @@ use App\Http\Controllers\RingtoneController;
 
 
 Route::get('/',[UserController::class,'index']);
-Route::get('{url?}',[UserController::class,'ringtonedetail']);
+Route::get('/downloadringtone/{id}',[UserController::class,'downloadringtone']);
+Route::any('/{url?}',[UserController::class,'ringtonedetail']);
 
 Auth::routes();
 
