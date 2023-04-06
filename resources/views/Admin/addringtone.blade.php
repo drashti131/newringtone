@@ -93,7 +93,7 @@
                         @if(isset($edit))
                             <form class="form"  action="{{url('admin/ringtone')}}/{{$edit->r_id}}" enctype="multipart/form-data" method="POST" id="ringtone">
                             @method('PUT')
-                        @else   
+                        @else
                             <form class="form"  action="{{url('admin/ringtone')}}" enctype="multipart/form-data" method="post" id="ringtone">
                         @endif
                             @csrf
@@ -124,16 +124,19 @@
                                         <textarea class="form-control" name="labels" placeholder="Enter Labels">{{isset($edit)?$edit->labels :''}}</textarea>
                                     </div>
                                 </div>
-                                <!-- <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <label>Image :</label>
-                                        @if(isset($edit))
-                                            <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="h-25 w-25 align-self-end">
-                                        @endif
-                                        <input type="file" class="form-control" name="image" placeholder="Enter Author Name" accept="image/png, image/gif, image/jpeg"/>
-                                    </div>
-                                </div> -->
                                 <div class="form-group row">
+                                    <div class="col-lg-12">
+                                        <label class="col-lg-12">Audio File :</label>
+                                        @if(isset($edit))
+                                            <audio controls class="mb-2">
+                                                <source src="{{asset('public/Assets')}}/Admin/Ringtones/{{$edit->audio_file}}" type="audio/mpeg">
+                                            </audio>
+                                            {{-- <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="h-25 w-25 align-self-end"> --}}
+                                        @endif
+                                        <input type="file" class="form-control" name="audio_file" accept="audio/mp3"/>
+                                    </div>
+                                </div>
+                                {{-- <div class="form-group row">
                                     <div class="col-lg-12">
                                         <label>Image :</label>
                                     </div>
@@ -141,14 +144,14 @@
                                         <div class="preview">
                                         @if(isset($edit->image))
                                             <img id="preview-selected-image" src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="dflex"/>
-                                        @else 
-                                        <img id="preview-selected-image" src=""/>   
-                                        @endif    
+                                        @else
+                                        <img id="preview-selected-image" src=""/>
+                                        @endif
                                         </div>
                                         <label for="file-upload">Upload Image</label>
                                         <input type="file" id="file-upload" accept="image/*" onchange="previewImage(event);" name="image"/>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -175,14 +178,14 @@
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 <script>
-    $('#name').on('keyup', function (e) { 
+    $('#name').on('keyup', function (e) {
     e.preventDefault();
     var str = $(this).val();
     str = str.replace(/\W+(?!$)/g, '-').toLowerCase();
     str = str.replace(/\W$/, '').toLowerCase();
     $('#url').val(str);
     });
-  
+
     $(document).ready(function() {
         $("#ringtone").validate({
             rules: {
@@ -191,7 +194,7 @@
                 authorname: "required",
                 labels: "required",
                 image: "required",
-                
+
             },
             messages: {
                 name: "Name is required",

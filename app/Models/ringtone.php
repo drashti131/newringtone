@@ -18,7 +18,6 @@ class ringtone extends Model
         'authorname',
         'download_count',
         'labels',
-        'image',
+        'audio_file',
     ];
 }
-						
