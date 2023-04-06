@@ -46,6 +46,7 @@
     cursor: pointer;
 }
 
+
 .downloadbtn{
     margin-left: auto;
     width: fit-content;
@@ -68,6 +69,8 @@
     margin-right: 8px;
 
 }
+
+
 </style>
     <section class="content">
         <h1>Trending Ringtones
@@ -83,7 +86,6 @@
                         <div id="player-container">
                         <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
                             <div class="circle play newcls" id="{{$value->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}"></div>
-
                         </div>
                             <!-- <div class="newcls">
 
