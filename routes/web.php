@@ -21,6 +21,7 @@ use App\Http\Controllers\RingtoneController;
 
 Route::get('/',[UserController::class,'index']);
 Route::get('{url?}',[UserController::class,'ringtonedetail']);
+Route::get('labels/{url?}',[UserController::class,'labelwisedetail']);
 
 Auth::routes();
 
