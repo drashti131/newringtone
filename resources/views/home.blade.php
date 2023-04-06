@@ -1,5 +1,52 @@
 @extends('app')
 @section('body')
+<style>
+    /* #player-container .newcls {
+    cursor: pointer;
+    text-indent: -999999px;
+    height:45px;
+    width: 45px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+),linear-gradient(49.02deg,#fc5c7d -14.03%,#6a82fb 104.22%);
+    background-repeat: no-repeat!important;
+    background-position: center;
+    background-repeat:no-repeat;
+    background-position:center;
+    border-radius: 4px;
+} */
+.play {
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
+}
+.pause {
+   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMTAgMjRoLTZ2LTI0aDZ2MjR6bTEwLTI0aC02djI0aDZ2LTI0eiIvPjwvc3ZnPg==)!important;
+   background-position-x:10px !important;
+}
+.rectangle {
+    border-radius: 2px;
+    display: inline-block;
+    margin-right: 2px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    /* background:linear-gradient(49.02deg,#fc5c7d -14.03%,#6a82fb 104.22%) */
+}
+
+.rectangle .circle {
+    background: #fff;
+    border-radius: 100%;
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
+    background-repeat: no-repeat!important;
+    background-position: center !important;
+    background-size:16px;
+    background-position-x:11px !important;
+    cursor: pointer;
+}
+
+</style>
     <section class="content">
         <h1>Trending Ringtones
         </h1>
@@ -9,14 +56,22 @@
             @foreach ($ringtonedata as $value)
                 <div class="ringtone ">
                     <div class="details">
+                        
+
+                        <div id="player-container">
+                        <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
+                            <div class="circle play newcls" id="{{$value->r_id}}" src="https://cldup.com/qR72ozoaiQ.mp3"></div>
+        
+                        </div>
+                            <!-- <div class="newcls"> 
+
+                            </div> -->
+                            <!-- <div id="{{$value->r_id}}" class="play newcls" src="https://cldup.com/qR72ozoaiQ.mp3">Play</div> -->
+                        </div>
 
 
-                        <img src="https://picsum.photos/seed/picsum/200/300" class="play" width="50" height="50">
-                        <img src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$value->image}}" class="pause" width="50" height="50">
-
-
-                        {{-- <div class="controls">
-                            <div class="control bg-gradient-3" data-id="01f5dzvi" data-f="Eed253231d4611226da6062dcc735cbb6">
+                        <!-- <div class="controls">
+                            <div class="control bg-gradient-3">
                                 <div class="play play-icon">
                                     <svg class="icon">
                                         <use xlink:href="#play-icon"></use>
@@ -31,7 +86,8 @@
                                     <div class="spinner"></div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>  -->
+                        
 
                         <a href="ringtone/oii-message-tone-01f5dzvi.html" class="title">{{$value->name}}</a>
                         <div class="like-share-icon">
@@ -638,21 +694,31 @@
 <script type="text/javascript">
     $(document).ready( function() {
 
-        $('.play').click(function(){
-            $('.pause').show();
-            $(this).hide();
-            var audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-            audio.play();
-        });
+        var track      = document.createElement('audio');
+        track.id       = 'audio-player';
+        track.controls = 'controls';
+       
+        track.type     = 'audio/mpeg';
+        $('.newcls').click(function(){
+            track.src      = $(this).attr('src');
+            var id=$(this).attr('id')
+            if ($(this).hasClass('play')) {
+                track.play();
+                //controlBtn.textContent = "Pause";
+                $(this).removeClass('play')
+                $(this).addClass('pause')
+            } else { 
+                track.pause();
+                //controlBtn.textContent = "Play";
+                $(this).addClass('play')
+                $(this).removeClass('pause')
+            }
 
-        $('.pause').click(function(){
-            $('.pause').hide();
-            $('.play').show();
-            var audio = new Audio('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
-            audio.pause();
-        });
-
-
+            track.addEventListener('ended', function() {
+                $('#'+id).removeClass('pause')
+                $('#'+id).addClass('play')
+            });
+        }); 
     });
 </script>
 @endsection
