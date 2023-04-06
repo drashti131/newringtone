@@ -46,26 +46,28 @@
     cursor: pointer;
 }
 
-    .downloadbtn{
-        margin-left: auto;
-        width: fit-content;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 30px;
-        padding: 6px 12px;
-        color: #fff;
-        font-weight: 700;
-        font-size: 12px;
-        line-height: 16px;
-        cursor: pointer;
-        text-decoration: none;
-    }
-    .downloadbtn svg{
-        width: 14px;
-        height: 14px;
-        margin-right: 8px;
-    }
+.downloadbtn{
+    margin-left: auto;
+    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    padding: 6px 12px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top:25px
+}
+.downloadbtn svg{
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+
+}
 </style>
     <section class="content">
         <h1>Trending Ringtones
@@ -76,14 +78,14 @@
             @foreach ($ringtonedata as $key=>$value)
                 <div class="ringtone ">
                     <div class="details">
-                        
+
 
                         <div id="player-container">
                         <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
-                            <div class="circle play newcls" id="{{$value->r_id}}" src="https://cldup.com/qR72ozoaiQ.mp3"></div>
-        
+                            <div class="circle play newcls" id="{{$value->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}"></div>
+
                         </div>
-                            <!-- <div class="newcls"> 
+                            <!-- <div class="newcls">
 
                             </div> -->
                             <!-- <div id="{{$value->r_id}}" class="play newcls" src="https://cldup.com/qR72ozoaiQ.mp3">Play</div> -->
@@ -111,7 +113,7 @@
 
                         </div>  -->
 
-                        <a href="ringtone/oii-message-tone-01f5dzvi.html" class="title">{{$value->name}}</a>
+                        <a href="{{url('/')}}/{{$value->url}}" class="title">{{$value->name}}</a>
                         <div class="like-share-icon">
 
                             <div class="like-icon " data-eid="01f5dzvi">
@@ -149,7 +151,7 @@
                         @endforeach
                     @endif
                     </div>
-                    <a class="btn btn-success downloadbtn bg-download-button-{{mt_rand(0,9)}}" href="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}" download>
+                    <a class="btn btn-success downloadbtn bg-download-button-{{mt_rand(0,9)}}" href="{{url('/')}}/{{$value->url}}">
                             <svg class="icon">
                                 <use xlink:href="#download-icon"></use>
                             </svg>
@@ -714,7 +716,7 @@
         var track      = document.createElement('audio');
         track.id       = 'audio-player';
         track.controls = 'controls';
-       
+
         track.type     = 'audio/mpeg';
         $('.newcls').click(function(){
             track.src      = $(this).attr('src');
@@ -724,7 +726,7 @@
                 //controlBtn.textContent = "Pause";
                 $(this).removeClass('play')
                 $(this).addClass('pause')
-            } else { 
+            } else {
                 track.pause();
                 //controlBtn.textContent = "Play";
                 $(this).addClass('play')
@@ -735,7 +737,7 @@
                 $('#'+id).removeClass('pause')
                 $('#'+id).addClass('play')
             });
-        }); 
+        });
     });
 </script>
 @endsection
