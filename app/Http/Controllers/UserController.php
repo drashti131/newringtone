@@ -47,7 +47,8 @@ class UserController extends Controller
         $data['rdata'] = \DB::table('ringtone')
         ->whereRaw('FIND_IN_SET(?, labels)', [$url])
         ->get();
-
+        $data['rdata']= json_decode(json_encode($data['rdata']), true);;
+        
         if(isset($data['rdata']) && count($data['rdata'])>0)
         {
             $data['label']=true;
