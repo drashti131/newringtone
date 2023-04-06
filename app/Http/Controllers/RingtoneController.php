@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ringtone;
+use Carbon\Carbon;
 
 class RingtoneController extends Controller
 {
@@ -106,14 +107,13 @@ class RingtoneController extends Controller
                 'labels'=>$data['labels']
             );
 
-            if($request->file('image'))
+            if($request->file('audio_file'))
             {
-                $path=public_path('Assets/Admin/ringtoneimage');
 
-                $filename = $request->image->getClientOriginalName();
-
-                $request->image->move($path, $filename);
-                $ringtone['image']=$filename;
+                $path=public_path('Assets/Admin/Ringtones');
+                $filename = $request->audio_file->getClientOriginalName();
+                $request->audio_file->move($path, $filename);
+                $ringtone['audio_file']=$filename;
             }
             ringtone::create($ringtone);
             return redirect('/admin/ringtone');
@@ -163,20 +163,17 @@ class RingtoneController extends Controller
                 'labels'=>$data['labels']
             );
 
-            if($request->file('image'))
+            if($request->file('audio_file'))
             {
-                $path=public_path('Assets/Admin/ringtoneimage');
-
+                $path=public_path('Assets/Admin/Ringtones');
+                $filename = $request->audio_file->getClientOriginalName();
                 $old_ringtone = ringtone::find($id);
-                if($old_ringtone->image != ''  && $old_ringtone->image != null){
-                    $file_old = $path.'/'.$old_ringtone->image;
+                if($old_ringtone->audio_file != ''  && $old_ringtone->audio_file != null){
+                    $file_old = $path.'/'.$old_ringtone->audio_file;
                     unlink($file_old);
                 }
-
-                $filename = $request->image->getClientOriginalName();
-
-                $request->image->move($path, $filename);
-                $ringtone['image']=$filename;
+                $request->audio_file->move($path, $filename);
+                $ringtone['audio_file']=$filename;
             }
             ringtone::where('r_id',$id)->update($ringtone);
             return redirect('/admin/ringtone');

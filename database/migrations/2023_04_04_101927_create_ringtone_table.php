@@ -21,7 +21,7 @@ class CreateRingtoneTable extends Migration
             $table->string('authorname');
             $table->string('download_count');
             $table->text('labels');
-            $table->text('image')->nullable();
+            $table->text('audio_file')->nullable();
             $table->timestamps();
         });
     }
