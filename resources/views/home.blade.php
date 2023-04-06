@@ -60,11 +60,13 @@
         line-height: 16px;
         cursor: pointer;
         text-decoration: none;
+        margin-top:25px
     }
     .downloadbtn svg{
         width: 14px;
         height: 14px;
         margin-right: 8px;
+       
     }
 </style>
     <section class="content">
@@ -80,7 +82,7 @@
 
                         <div id="player-container">
                         <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
-                            <div class="circle play newcls" id="{{$value->r_id}}" src="https://cldup.com/qR72ozoaiQ.mp3"></div>
+                            <div class="circle play newcls" id="{{$value->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}"></div>
         
                         </div>
                             <!-- <div class="newcls"> 
@@ -111,7 +113,7 @@
 
                         </div>  -->
 
-                        <a href="ringtone/oii-message-tone-01f5dzvi.html" class="title">{{$value->name}}</a>
+                        <a href="{{url('/')}}/{{$value->url}}" class="title">{{$value->name}}</a>
                         <div class="like-share-icon">
 
                             <div class="like-icon " data-eid="01f5dzvi">
@@ -149,7 +151,7 @@
                         @endforeach
                     @endif
                     </div>
-                    <a class="btn btn-success downloadbtn bg-download-button-{{mt_rand(0,9)}}" href="{{asset('public/Assets')}}/Admin/Ringtones/{{$value->audio_file}}" download>
+                    <a class="btn btn-success downloadbtn bg-download-button-{{mt_rand(0,9)}}" href="{{url('/')}}/{{$value->url}}">
                             <svg class="icon">
                                 <use xlink:href="#download-icon"></use>
                             </svg>
