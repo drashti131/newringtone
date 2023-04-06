@@ -50,12 +50,12 @@
                     <span class="downloadcount">{{ $ringtonedata->download_count }}</span>
                 </div>
             </div>
-    
 
-           
+
+
             <div id="player-container">
                 <div class="rectangle_d bg-gradient-{{mt_rand(0,9)}}">
-                    <div class="circle_d play newcls" id="{{$ringtonedata->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/{{$ringtonedata->audio_file}}"></div>
+                    <div class="circle_d play newcls" id="{{$ringtonedata->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$ringtonedata->audio_file}}"></div>
                 </div>
             </div>
             <div>{{$ringtonedata->time}} Sec</div>
@@ -65,20 +65,18 @@
             <div class="tags">
                 @if(isset($labelsarray))
                     @foreach ($labelsarray as $l)
-                        <a class="tag" href="#"
+                        <a class="tag" href="{{url('labels')}}/{{str_replace(' ', '-', $l)}}"
                         rel="tag">{{$l}}</a>
                     @endforeach
                 @endif
             </div>
             <div class="download-btn-wrap">
-                <a target="_blank"
-                    href="#"
-                    rel="nofollow" class="download-btn setas">Set as ringtone</a>
-                <a href="{{asset('public/Assets')}}/Admin/Ringtones/{{$ringtonedata->audio_file}}" rel="nofollow"
-                    class="download-btn" DOWNLOAD>Download .mp3 for Android</a>
-                <a href="#" rel="nofollow"
-                    class="download-btn iphone">Download .m4r for iPhone</a>
-            </div>
+                    <a target="_blank" href="#" rel="nofollow" class="download-btn setas">Set as ringtone</a>
+                    <a href="{{ asset('public/Assets') }}/Admin/Ringtones/Android/{{ $ringtonedata->audio_file }}"
+                        rel="nofollow" class="download-btn download" download data="{{$ringtonedata->r_id}}">Download .mp3 for Android</a>
+                    <a href="{{ asset('public/Assets') }}/Admin/Ringtones/IOS/{{ $ringtonedata->iphone_audio_file }}"
+                        rel="nofollow" class="download-btn iphone download" download data="{{$ringtonedata->r_id}}">Download .m4r for iPhone</a>
+                </div>
         </div>
     </div>
 </div>
@@ -97,12 +95,12 @@
 
                     <div id="player-container">
                     <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
-                        <div class="circle play newcls" id="{{$value['r_id']}}" src="{{asset('public/Assets')}}/Admin/Ringtones/{{$value['audio_file']}}"></div>
+                        <div class="circle play newcls" id="{{$value['r_id']}}" src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$value['audio_file']}}"></div>
                     </div>
                         <!-- <div class="newcls">
 
                         </div> -->
-                        
+
                     </div>
 
                     <!-- <div class="controls">
@@ -173,9 +171,9 @@
                 </a>
             </div>
         @endforeach
-    </div> 
+    </div>
 </div>
-@endif 
+@endif
 
 
 @endsection
@@ -212,63 +210,7 @@
     });
 </script>
 
-
-            <div class="item-detail">
-                <div class="title">
-                    {{ $ringtonedata->name }}
-                </div>
-                <div class="info">
-                    <a class="author" href="#">
-                        @ {{ $ringtonedata->authorname }}
-                    </a>
-                    <div class="downloads">
-                        <svg class="icon">
-                            <use xlink:href="#arrow_down"></use>
-                        </svg>
-                        <span class="downloadcount">{{ $ringtonedata->download_count }}</span>
-                    </div>
-                </div>
-                <div class="controls">
-                    <div class="control" data-id="7ijwip2w" data-f="88533618ffe6fe8da95f1ca8a96e6ee5d">
-                        <div class="play play-icon">
-                            <svg class="icon">
-                                <use xlink:href="#play-icon"></use>
-                            </svg>
-                        </div>
-                        <div class="pause pause-icon">
-                            <svg class="icon">
-                                <use xlink:href="#pause-icon"></use>
-                            </svg>
-                        </div>
-                        <div class="spinner-border">
-                            <div class="spinner"></div>
-                        </div>
-                    </div>
-                </div>
-                <div>{{ $ringtonedata->time }}</div>
-                @php
-                    $labelsarray = explode(',', $ringtonedata->labels);
-                @endphp
-                <div class="tags">
-                    @if (isset($labelsarray))
-                        @foreach ($labelsarray as $l)
-                            <a class="tag" href="#" rel="tag">{{ $l }}</a>
-                        @endforeach
-                    @endif
-                </div>
-                <div class="download-btn-wrap">
-                    <a target="_blank" href="#" rel="nofollow" class="download-btn setas">Set as ringtone</a>
-                    <a href="{{ asset('public/Assets') }}/Admin/Ringtones/Android/{{ $ringtonedata->audio_file }}"
-                        rel="nofollow" class="download-btn download" download data="{{$ringtonedata->r_id}}">Download .mp3 for Android</a>
-                    <a href="{{ asset('public/Assets') }}/Admin/Ringtones/IOS/{{ $ringtonedata->iphone_audio_file }}"
-                        rel="nofollow" class="download-btn iphone download" download data="{{$ringtonedata->r_id}}">Download .m4r for iPhone</a>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection
-@section('script')
-    <script>
+<script>
         $(document).ready(function() {
             $(function() {
                 $('.download').on('click', function() {
@@ -285,3 +227,4 @@
         });
     </script>
 @endsection
+
