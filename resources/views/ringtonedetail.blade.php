@@ -1,5 +1,6 @@
 @extends('app')
 @section('body')
+
 <style>
 .play {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMiAyNHYtMjRsMjAgMTItMjAgMTJ6Ii8+PC9zdmc+);
@@ -34,7 +35,7 @@
             </div>
         </div>
 
-        <div class="item-detail">
+          <div class="item-detail">
             <div class="title">
                 {{$ringtonedata->name}}
             </div>
@@ -46,9 +47,11 @@
                     <svg class="icon">
                         <use xlink:href="#arrow_down"></use>
                     </svg>
-                    {{$ringtonedata->download_count}}
+                    <span class="downloadcount">{{ $ringtonedata->download_count }}</span>
                 </div>
             </div>
+    
+
            
             <div id="player-container">
                 <div class="rectangle_d bg-gradient-{{mt_rand(0,9)}}">
@@ -208,4 +211,77 @@
         });
     });
 </script>
+
+
+            <div class="item-detail">
+                <div class="title">
+                    {{ $ringtonedata->name }}
+                </div>
+                <div class="info">
+                    <a class="author" href="#">
+                        @ {{ $ringtonedata->authorname }}
+                    </a>
+                    <div class="downloads">
+                        <svg class="icon">
+                            <use xlink:href="#arrow_down"></use>
+                        </svg>
+                        <span class="downloadcount">{{ $ringtonedata->download_count }}</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <div class="control" data-id="7ijwip2w" data-f="88533618ffe6fe8da95f1ca8a96e6ee5d">
+                        <div class="play play-icon">
+                            <svg class="icon">
+                                <use xlink:href="#play-icon"></use>
+                            </svg>
+                        </div>
+                        <div class="pause pause-icon">
+                            <svg class="icon">
+                                <use xlink:href="#pause-icon"></use>
+                            </svg>
+                        </div>
+                        <div class="spinner-border">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>{{ $ringtonedata->time }}</div>
+                @php
+                    $labelsarray = explode(',', $ringtonedata->labels);
+                @endphp
+                <div class="tags">
+                    @if (isset($labelsarray))
+                        @foreach ($labelsarray as $l)
+                            <a class="tag" href="#" rel="tag">{{ $l }}</a>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="download-btn-wrap">
+                    <a target="_blank" href="#" rel="nofollow" class="download-btn setas">Set as ringtone</a>
+                    <a href="{{ asset('public/Assets') }}/Admin/Ringtones/Android/{{ $ringtonedata->audio_file }}"
+                        rel="nofollow" class="download-btn download" download data="{{$ringtonedata->r_id}}">Download .mp3 for Android</a>
+                    <a href="{{ asset('public/Assets') }}/Admin/Ringtones/IOS/{{ $ringtonedata->iphone_audio_file }}"
+                        rel="nofollow" class="download-btn iphone download" download data="{{$ringtonedata->r_id}}">Download .m4r for iPhone</a>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function() {
+            $(function() {
+                $('.download').on('click', function() {
+                    var r_id=$(this).attr('data');
+                    $.ajax({
+                        method: 'get',
+                        url: "{{url('downloadringtone')}}"+"/"+ r_id,
+                        success: function(data) {
+                            $(".downloadcount").html(data);
+                        },
+                    });
+                });
+            });
+        });
+    </script>
 @endsection

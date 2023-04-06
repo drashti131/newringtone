@@ -59,4 +59,12 @@ class UserController extends Controller
             return redirect('/');
         }
     }
+
+    public function downloadringtone($id){
+        $data=ringtone::where('r_id',$id)->first();
+        $count = $data->download_count + 1;
+        ringtone::where('r_id',$id)->update(array('download_count'=>$count));
+        echo $count;
+
+    }
 }
