@@ -12,7 +12,7 @@
 <meta name="keywords" content="download, mp3, m4r, ringtone, android, iphone" />
 <meta name="description" content="Browse the best ringtones to personalize your phone." />
 <meta name="google-site-verification" content="fqGAjO1sWD1EHT-uwNcSgZgKPPjgI23X9EzEsZjhkY8" />
-<link rel="stylesheet" href="{{asset('public/Assets')}}/css/styles-75af50098e.css" />
+<link rel="stylesheet" href="{{ asset('public/Assets/css/styles-75af50098e.css') }}" />
 <style>
     .async-hide {
         opacity: 0 !important
@@ -25,7 +25,7 @@
 <div class="header ">
 <div class="nav">
 <a href="{{url('/')}}" class="logo">
-<img src="{{asset('public/Assets')}}/images/header-logo.svg" alt="mobcup-logo" />
+<img src="{{ asset('public/Assets//images/header-logo.svg') }}" alt="mobcup-logo" />
 
 
 </a>
@@ -98,7 +98,7 @@
 </div>
 <div class="container">
 <div>
-<img src="{{asset('public/Assets')}}/images/login-logo1.svg" alt="mobcup logo" />
+<img src="{{ asset('public/Assets/Admin/Ringtones/Android/images/login-logo1.svg') }}" alt="mobcup logo" />
 </div>
 <div class="login-title">Let's sign you in.</div>
 <a class="btn btn-google" href="https://accounts.google.com/o/oauth2/v2/auth?response_type=code&amp;redirect_uri=https%3A%2F%2Fmobcup.net%2Fglogin%2Fcallback&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;client_id=824721248772-10hn447bb1pqefejf7p4kkk949kntvop.apps.googleusercontent.com">
@@ -230,4 +230,4 @@ Share
 </symbol>
 </defs>
 </svg>
-<script src="{{asset('public/Assets')}}/js/app-scripts-61e5b3d761.min.js"></script>
+<script src="{{asset('public/Assets/js/app-scripts-61e5b3d761.min.js')}}"></script>

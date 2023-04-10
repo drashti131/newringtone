@@ -129,7 +129,7 @@
                                         <label class="col-lg-12">Audio File :</label>
                                         @if(isset($edit))
                                             <audio controls class="mb-2">
-                                                <source src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$edit->audio_file}}" type="audio/mpeg">
+                                                <source src="{{asset('public/Assets/Admin/Ringtones/Android/'.$edit->audio_file)}}" type="audio/mpeg">
                                             </audio>
                                         @endif
                                         <input type="file" class="form-control" name="audio_file" accept="audio/mp3"/>
@@ -140,28 +140,13 @@
                                         <label class="col-lg-12">IOS Audio File :</label>
                                         @if(isset($edit))
                                             <audio controls class="mb-2">
-                                                <source src="{{asset('public/Assets')}}/Admin/Ringtones/IOS/{{$edit->iphone_audio_file}}" type="audio/mpeg">
+                                                <source src="{{asset('public/Assets/Admin/Ringtones/IOS/'.$edit->iphone_audio_file)}}" type="audio/mpeg">
                                             </audio>
                                         @endif
                                         <input type="file" class="form-control" name="iphone_audio_file"/>
                                     </div>
                                 </div>
-                                {{-- <div class="form-group row">
-                                    <div class="col-lg-12">
-                                        <label>Image :</label>
-                                    </div>
-                                    <div class="image-preview-container">
-                                        <div class="preview">
-                                        @if(isset($edit->image))
-                                            <img id="preview-selected-image" src="{{asset('public/Assets')}}/Admin/ringtoneimage/{{$edit->image}}" class="dflex"/>
-                                        @else
-                                        <img id="preview-selected-image" src=""/>
-                                        @endif
-                                        </div>
-                                        <label for="file-upload">Upload Image</label>
-                                        <input type="file" id="file-upload" accept="image/*" onchange="previewImage(event);" name="image"/>
-                                    </div>
-                                </div> --}}
+
                             </div>
                             <div class="card-footer">
                                 <div class="row">
@@ -184,7 +169,6 @@
 </div>
 @endsection
 
-=======
 @section('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
 <script>

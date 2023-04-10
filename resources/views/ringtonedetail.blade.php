@@ -55,7 +55,7 @@
 
             <div id="player-container">
                 <div class="rectangle_d bg-gradient-{{mt_rand(0,9)}}">
-                    <div class="circle_d play newcls" id="{{$ringtonedata->r_id}}" src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$ringtonedata->audio_file}}"></div>
+                    <div class="circle_d play newcls" id="{{$ringtonedata->r_id}}" src="{{asset('public/Assets/Admin/Ringtones/Android/'.$ringtonedata->audio_file)}}"></div>
                 </div>
             </div>
             <div>{{$ringtonedata->time}} Sec</div>
@@ -95,7 +95,7 @@
 
                     <div id="player-container">
                     <div class="rectangle bg-gradient-{{mt_rand(0,9)}}">
-                        <div class="circle play newcls" id="{{$value['r_id']}}" src="{{asset('public/Assets')}}/Admin/Ringtones/Android/{{$value['audio_file']}}"></div>
+                        <div class="circle play newcls" id="{{$value['r_id']}}" src="{{asset('public/Assets/Admin/Ringtones/Android/'.$value['audio_file'])}}"></div>
                     </div>
                         <!-- <div class="newcls">
 
@@ -225,6 +225,6 @@
                 });
             });
         });
-    </script>    
+    </script>
 @endsection
 

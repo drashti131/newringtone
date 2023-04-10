@@ -28,11 +28,11 @@ class UserController extends Controller
                     ->whereRaw('FIND_IN_SET(?, labels)', [$v])
                     ->first();
                 }
-               
+
                 $data['rdata'] = array_filter(array_map("unserialize", array_unique(array_map("serialize", $data['rdata']))));
                 $data['rdata'] = array_filter($data['rdata']);
-               
-            }  
+
+            }
             return view('ringtonedetail',$data);
         }
         else
@@ -42,13 +42,13 @@ class UserController extends Controller
     }
 
     public function labelwisedetail($url){
-        
+
         $url=str_replace('-', ' ', $url);
         $data['rdata'] = \DB::table('ringtone')
         ->whereRaw('FIND_IN_SET(?, labels)', [$url])
         ->get();
         $data['rdata']= json_decode(json_encode($data['rdata']), true);;
-        
+
         if(isset($data['rdata']) && count($data['rdata'])>0)
         {
             $data['label']=true;

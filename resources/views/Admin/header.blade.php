@@ -12,17 +12,17 @@
 		<!--begin::Page Vendors Styles(used by this page)-->
 		<!--end::Page Vendors Styles-->
 		<!--begin::Global Theme Styles(used by all pages)-->
-		<link href="{{asset('public/Assets')}}/Admin/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="{{asset('public/Assets')}}/Admin/plugins/custom/prismjs/prismjs.bundle.css" rel="stylesheet" type="text/css" />
-		<link href="{{asset('public/Assets')}}/Admin/css/style.bundle.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/plugins/global/plugins.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/plugins/custom/prismjs/prismjs.bundle.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/css/style.bundle.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Global Theme Styles-->
 		<!--begin::Layout Themes(used by all pages)-->
-		<link href="{{asset('public/Assets')}}/Admin/css/themes/layout/header/base/light.css" rel="stylesheet" type="text/css" />
-		<link href="{{asset('public/Assets')}}/Admin/css/themes/layout/header/menu/light.css" rel="stylesheet" type="text/css" />
-		<link href="{{asset('public/Assets')}}/Admin/css/themes/layout/brand/dark.css" rel="stylesheet" type="text/css" />
-		<link href="{{asset('public/Assets')}}/Admin/css/themes/layout/aside/dark.css" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/css/themes/layout/header/base/light.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/css/themes/layout/header/menu/light.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/css/themes/layout/brand/dark.css')}}" rel="stylesheet" type="text/css" />
+		<link href="{{asset('public/Assets/Admin/css/themes/layout/aside/dark.css')}}" rel="stylesheet" type="text/css" />
 		<!--end::Layout Themes-->
-		<link rel="shortcut icon" href="{{asset('public/Assets')}}/Admin/media/logos/favicon.ico" />
+		<link rel="shortcut icon" href="{{asset('public/Assets/Admin/media/logos/favicon.ico')}}" />
 	</head>
     <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
     <!--begin::Main-->
@@ -30,7 +30,7 @@
     <div id="kt_header_mobile" class="header-mobile align-items-center header-mobile-fixed">
         <!--begin::Logo-->
         <a href="{{url('/admin/dashboard')}}">
-            <img alt="Logo" src="{{asset('public/Assets')}}/Admin/media/logos/logo-light.png" />
+            <img alt="Logo" src="{{asset('public/Assets/Admin/media/logos/logo-light.png')}}" />
         </a>
         <!--end::Logo-->
         <!--begin::Toolbar-->
@@ -73,7 +73,7 @@
                 <div class="brand flex-column-auto" id="kt_brand">
                     <!--begin::Logo-->
                     <a href="{{url('/admin/dashboard')}}" class="brand-logo">
-                        <img alt="Logo" src="{{asset('public/Assets')}}/Admin/media/logos/logo-light.png" />
+                        <img alt="Logo" src="{{asset('public/Assets/Admin/media/logos/logo-light.png')}}" />
                     </a>
                     <!--end::Logo-->
                     <!--begin::Toggle-->
@@ -224,7 +224,7 @@
 				<!--begin::Separator-->
 				<div class="separator separator-dashed mt-8 mb-5"></div>
 				<!--end::Separator-->
-				
+
 				<!--begin::Separator-->
 				<div class="separator separator-dashed my-7"></div>
 				<!--end::Separator-->
